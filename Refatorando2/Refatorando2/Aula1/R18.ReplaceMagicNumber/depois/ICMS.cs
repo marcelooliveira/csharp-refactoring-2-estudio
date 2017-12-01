@@ -14,17 +14,18 @@ namespace refatoracao.R18.ReplaceMagicNumber.depois
 
     class ICMS
     {
-        private const decimal ICMS_SP_PARA_SP = 0.18m;
-        private const decimal ICMS_PADRAO = 0.15m;
-        private const string SAO_PAULO = "SP";
-
         public static decimal CalcularValor(decimal valorProdutos, string uf)
         {
-            if (uf == SAO_PAULO)
+            if (valorProdutos < 0)
             {
-                return valorProdutos * ICMS_SP_PARA_SP;
+                throw new ArgumentOutOfRangeException("Valor não pode ser negativo");
             }
-            return valorProdutos * ICMS_PADRAO;
+
+            if (uf == "SP")
+            {
+                return valorProdutos * 0.18m;
+            }
+            return valorProdutos * 0.15m;
         }
     }
 }
