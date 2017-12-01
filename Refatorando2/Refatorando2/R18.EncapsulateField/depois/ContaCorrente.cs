@@ -8,25 +8,16 @@ namespace refatoracao.R18.SelfEncapsulateField.depois
     {
         void Main()
         {
-            var conta = new ContaCorrente(100);
+            var conta = new ContaCorrente();
             conta.Depositar(100);
             conta.Sacar(75);
-            //conta.saldo -= 35; //não é mais permitido!!
+            conta.saldo -= 35; //opa, acessou diretamente o saldo!!
         }
     }
 
     class ContaCorrente
     {
-        private decimal saldo;
-        public decimal Saldo
-        {
-            get { return saldo; }
-        }
-
-        public ContaCorrente(decimal saldo)
-        {
-            this.saldo = saldo;
-        }
+        public decimal saldo;
 
         public void Sacar(decimal valor)
         {
