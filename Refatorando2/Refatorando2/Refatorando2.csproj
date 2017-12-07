@@ -5,21 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Aula1\R20.ReplaceDataValueWithObject\**" />
     <Compile Remove="Aula1\R21.EncapsulateField\**" />
     <Compile Remove="Aula1\R22.EncapsulateCollection\**" />
     <Compile Remove="Aula2\**" />
     <Compile Remove="Aula3\**" />
     <Compile Remove="Aula4\**" />
     <Compile Remove="Aula5\**" />
-    <EmbeddedResource Remove="Aula1\R20.ReplaceDataValueWithObject\**" />
     <EmbeddedResource Remove="Aula1\R21.EncapsulateField\**" />
     <EmbeddedResource Remove="Aula1\R22.EncapsulateCollection\**" />
     <EmbeddedResource Remove="Aula2\**" />
     <EmbeddedResource Remove="Aula3\**" />
     <EmbeddedResource Remove="Aula4\**" />
     <EmbeddedResource Remove="Aula5\**" />
-    <None Remove="Aula1\R20.ReplaceDataValueWithObject\**" />
     <None Remove="Aula1\R21.EncapsulateField\**" />
     <None Remove="Aula1\R22.EncapsulateCollection\**" />
     <None Remove="Aula2\**" />
