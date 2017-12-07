@@ -42,14 +42,6 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.antes
             this.cliente = cliente;
         }
 
-        public static int QuantidadeDePedidosDe(IEnumerable<Pedido> pedidos, string cliente)
-        {
-            return pedidos
-                .Count(p =>
-                    p.Cliente.Equals(cliente,
-                        StringComparison.CurrentCultureIgnoreCase));
-        }
-
         public void AddItem(string produto, decimal precoUnitario, int quantidade)
         {
             itens.Add(new Item(produto, precoUnitario, quantidade));
