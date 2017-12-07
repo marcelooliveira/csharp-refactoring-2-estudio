@@ -11,10 +11,17 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
         void Teste()
         {
             Cliente cliente = new Cliente("José da Silva");
-            var pedido = new Pedido(cliente);
-            pedido.AddItem("Alphakix", 10, 3);
-            pedido.AddItem("Stocklab", 15, 5);
-            pedido.AddItem("Statstrong", 6, 2);
+            var pedido1 = new Pedido(cliente);
+            pedido1.AddItem("Alphakix", 10, 3);
+            pedido1.AddItem("Stocklab", 15, 5);
+            pedido1.AddItem("Statstrong", 6, 2);
+
+            var pedido2 = new Pedido(cliente);
+            pedido2.AddItem("Fluxon", 5, 4);
+            pedido2.AddItem("Uptron", 6, 5);
+            pedido2.AddItem("Fillflix", 2, 4);
+
+            decimal comprasTotaisCliente = cliente.TotalCompras;
         }
     }
 
@@ -40,7 +47,9 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
 
         public void AddItem(string produto, decimal precoUnitario, int quantidade)
         {
-            itens.Add(new Item(produto, precoUnitario, quantidade));
+            Item item = new Item(produto, precoUnitario, quantidade);
+            itens.Add(item);
+            cliente.AdicionarItem(item);
         }
 
         public void RemoveItem(string produto)
@@ -49,6 +58,7 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
             if (item != null)
             {
                 itens.Remove(item);
+                cliente.RemoverItem(item);
             }
         }
     }
@@ -63,6 +73,8 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
 
         readonly int quantidade;
         public int Quantidade => quantidade;
+
+        public decimal Total => precoUnitario * quantidade;
 
         public Item(string produto, decimal precoUnitario, int quantidade)
         {
@@ -83,6 +95,15 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
             }
         }
 
+        private decimal totalCompras;
+        public decimal TotalCompras
+        {
+            get
+            {
+                return totalCompras;
+            }
+        }
+
         public Cliente(string nome)
         {
             this.nome = nome;
@@ -96,6 +117,16 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
         public override int GetHashCode()
         {
             return this.nome.GetHashCode();
+        }
+
+        public void AdicionarItem(Item item)
+        {
+            totalCompras += item.Total;
+        }
+
+        public void RemoverItem(Item item)
+        {
+            totalCompras -= item.Total;
         }
     }
 }
