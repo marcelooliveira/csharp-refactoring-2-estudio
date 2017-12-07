@@ -10,46 +10,49 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
     {
         void Teste()
         {
-            Cliente cliente = new Cliente("José da Silva");
-            var pedido1 = new Pedido(cliente);
+            var pedido1 = new Pedido("José da Silva");
             pedido1.AddItem("Alphakix", 10, 3);
             pedido1.AddItem("Stocklab", 15, 5);
             pedido1.AddItem("Statstrong", 6, 2);
 
-            var pedido2 = new Pedido(cliente);
+            var pedido2 = new Pedido("José da Silva");
             pedido2.AddItem("Fluxon", 5, 4);
             pedido2.AddItem("Uptron", 6, 5);
             pedido2.AddItem("Fillflix", 2, 4);
 
-            decimal comprasTotaisCliente = cliente.TotalCompras;
+            IList<Pedido> pedidos = new List<Pedido> { pedido1, pedido2 };
+
+            decimal comprasTotaisCliente =
+                pedidos
+                .Where(p => p.Cliente.Equals("José da Silva"))
+                .Sum(p => p.Itens.Sum(i => i.Total));
         }
     }
 
     class Pedido
     {
-        private readonly Cliente cliente;
-        public Cliente Cliente { get; }
+        private readonly string cliente;
+        public string Cliente { get; }
 
         private readonly IList<Item> itens = new List<Item>();
         public IReadOnlyCollection<Item> Itens => new ReadOnlyCollection<Item>(itens);
 
-        public Pedido(Cliente cliente)
+        public Pedido(string cliente)
         {
             this.cliente = cliente;
         }
 
-        public static int QuantidadeDePedidosDe(IEnumerable<Pedido> pedidos, Cliente cliente)
+        public static int QuantidadeDePedidosDe(IEnumerable<Pedido> pedidos, string cliente)
         {
             return pedidos
                 .Count(p =>
-                    p.Cliente.Equals(cliente));
+                    p.Cliente.Equals(cliente,
+                        StringComparison.CurrentCultureIgnoreCase));
         }
 
         public void AddItem(string produto, decimal precoUnitario, int quantidade)
         {
-            Item item = new Item(produto, precoUnitario, quantidade);
-            itens.Add(item);
-            cliente.AdicionarItem(item);
+            itens.Add(new Item(produto, precoUnitario, quantidade));
         }
 
         public void RemoveItem(string produto)
@@ -58,7 +61,6 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
             if (item != null)
             {
                 itens.Remove(item);
-                cliente.RemoverItem(item);
             }
         }
     }
@@ -81,52 +83,6 @@ namespace refatoracao.R20.ReplaceDataValueWithObject.depois
             this.produto = produto;
             this.precoUnitario = precoUnitario;
             this.quantidade = quantidade;
-        }
-    }
-
-    class Cliente
-    {
-        private readonly string nome;
-        public string Nome
-        {
-            get
-            {
-                return nome;
-            }
-        }
-
-        private decimal totalCompras;
-        public decimal TotalCompras
-        {
-            get
-            {
-                return totalCompras;
-            }
-        }
-
-        public Cliente(string nome)
-        {
-            this.nome = nome;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return this.nome.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return this.nome.GetHashCode();
-        }
-
-        public void AdicionarItem(Item item)
-        {
-            totalCompras += item.Total;
-        }
-
-        public void RemoverItem(Item item)
-        {
-            totalCompras -= item.Total;
         }
     }
 }
