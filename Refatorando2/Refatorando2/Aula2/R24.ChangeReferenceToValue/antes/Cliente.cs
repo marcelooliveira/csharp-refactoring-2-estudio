@@ -28,16 +28,16 @@ namespace refatoracao.R24.ChangeReferenceToValue.antes
             this.nome = nome;
         }
 
-        private static IDictionary<string, Cliente> funcionarios
+        private static IDictionary<string, Cliente> clientes
             = new Dictionary<string, Cliente>();
 
         public static Cliente Get(string nome)
         {
-            Cliente valor = (Cliente)funcionarios[nome];
+            Cliente valor = (Cliente)clientes[nome];
             if (valor == null)
             {
                 valor = new Cliente(nome);
-                funcionarios.Add(nome, valor);
+                clientes.Add(nome, valor);
             }
             return valor;
         }

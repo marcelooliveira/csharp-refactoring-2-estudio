@@ -22,6 +22,8 @@
   <ItemGroup>
     <Compile Include="Aula2\R23.ChangeValueToReference\antes\Projeto.cs" />
     <Compile Include="Aula2\R23.ChangeValueToReference\depois\Projeto.cs" />
+    <Compile Include="Aula2\R24.ChangeReferenceToValue\antes\Cliente.cs" />
+    <Compile Include="Aula2\R24.ChangeReferenceToValue\depois\Cliente.cs" />
   </ItemGroup>
 
 </Project>
