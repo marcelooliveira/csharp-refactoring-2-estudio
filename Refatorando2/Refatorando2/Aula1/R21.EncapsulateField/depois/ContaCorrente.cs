@@ -11,13 +11,15 @@ namespace refatoracao.R21.EncapsulateField.depois
             var conta = new ContaCorrente();
             conta.Depositar(100);
             conta.Sacar(75);
-            conta.saldo -= 35; //opa, acessou diretamente o saldo!!
+            //conta.saldo -= 35; //opa, acessou diretamente o saldo!!
         }
     }
 
     class ContaCorrente
     {
-        public decimal saldo;
+        private decimal saldo;
+
+        public decimal Saldo { get => saldo; }
 
         public void Sacar(decimal valor)
         {
