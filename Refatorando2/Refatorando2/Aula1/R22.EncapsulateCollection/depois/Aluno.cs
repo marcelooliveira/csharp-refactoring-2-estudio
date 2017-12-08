@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace refatoracao.R22.EncapsulateCollection.depois
@@ -9,20 +10,31 @@ namespace refatoracao.R22.EncapsulateCollection.depois
         void Testar()
         {
             Aluno aluno = new Aluno();
-            aluno.Cursos.Add(new Curso("JavaScript Básico"));
-            aluno.Cursos.Add(new Curso("C# Intermediário"));
-            aluno.Cursos.Add(new Curso("Java Avançado"));
+            aluno.Adicionar(new Curso("JavaScript Básico"));
+            aluno.Adicionar(new Curso("C# Intermediário"));
+            aluno.Adicionar(new Curso("Java Avançado"));
         }
     }
 
     class Aluno
     {
         private readonly List<Curso> cursos;
-        internal List<Curso> Cursos { get => cursos; }
+        internal IReadOnlyCollection<Curso> Cursos {
+            get => new ReadOnlyCollection<Curso>(cursos); }
 
         public Aluno()
         {
             cursos = new List<Curso>();
+        }
+
+        public void Adicionar(Curso curso)
+        {
+            cursos.Add(curso);
+        }
+
+        public void Remover(Curso curso)
+        {
+            cursos.Remove(curso);
         }
     }
 
