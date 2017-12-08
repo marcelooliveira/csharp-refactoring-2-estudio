@@ -43,6 +43,22 @@ namespace refatoracao.R23.ChangeValueToReference.depois
         {
             return nome.GetHashCode();
         }
+
+        private static IDictionary<string, Funcionario> funcionarios
+            = new Dictionary<string, Funcionario>();
+
+        internal static Funcionario Get(string nome)
+        {
+            Funcionario funcionario = funcionarios[nome];
+
+            if (funcionario == null)
+            {
+                funcionario = new Funcionario(nome);
+                funcionarios.Add(nome, funcionario);
+            }
+
+            return funcionario;
+        }
     }
 
     class Projeto
@@ -52,12 +68,12 @@ namespace refatoracao.R23.ChangeValueToReference.depois
 
         public Projeto(String nomeGerente)
         {
-            this.gerente = new Funcionario(nomeGerente);
+            this.gerente = Funcionario.Get(nomeGerente);
         }
 
         public void SetGerente(string nomeFuncionario)
         {
-            this.gerente = new Funcionario(nomeFuncionario);
+            this.gerente = Funcionario.Get(nomeFuncionario);
         }
     }
 }
