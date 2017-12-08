@@ -37,6 +37,42 @@ namespace refatoracao.R29.ReplaceTypeCodeWithSubclasses.antes
         readonly decimal salario;
         public decimal Salario => salario;
 
+        public decimal Comissao
+        {
+            get
+            {
+                switch (tipo)
+                {
+                    case TipoFuncionario.Engenheiro:
+                        return 0;
+                    case TipoFuncionario.Vendedor:
+                        return 1000;
+                    case TipoFuncionario.Gerente:
+                        return 0;
+                    default:
+                        return 0;
+                }
+            }
+        }
+
+        public decimal Bonus
+        {
+            get
+            {
+                switch (tipo)
+                {
+                    case TipoFuncionario.Engenheiro:
+                        return 0;
+                    case TipoFuncionario.Vendedor:
+                        return 0;
+                    case TipoFuncionario.Gerente:
+                        return salario / 2.0m;
+                    default:
+                        return 0;
+                }
+            }
+        }
+
         private Funcionario(TipoFuncionario tipo, string nome, decimal salario)
         {
             this.tipo = tipo;
