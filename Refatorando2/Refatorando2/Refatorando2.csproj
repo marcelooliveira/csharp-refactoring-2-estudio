@@ -31,6 +31,8 @@
     <Compile Include="Aula2\R25.ChangeUniToBi\depois\Pedido.cs" />
     <Compile Include="Aula2\R26.ChangeBiToUni\antes\Pedido.cs" />
     <Compile Include="Aula2\R26.ChangeBiToUni\depois\Pedido.cs" />
+    <Compile Include="Aula3\R28.ReplaceTypeCodeWithClass\antes\ContaBancaria.cs" />
+    <Compile Include="Aula3\R28.ReplaceTypeCodeWithClass\depois\ContaBancaria.cs" />
   </ItemGroup>
 
   <ItemGroup>
