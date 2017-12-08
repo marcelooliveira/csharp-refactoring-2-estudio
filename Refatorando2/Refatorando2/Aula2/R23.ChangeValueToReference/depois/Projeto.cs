@@ -9,7 +9,6 @@ namespace refatoracao.R23.ChangeValueToReference.depois
     {
         void Main()
         {
-            Funcionario.CarregarFuncionarios();
             var projeto = new Projeto("João Snow");
             projeto.SetGerente("Sonia Stark");
         }
@@ -25,35 +24,24 @@ namespace refatoracao.R23.ChangeValueToReference.depois
         private readonly String nome;
         public string Nome => nome;
 
-        public static void CarregarFuncionarios()
+        public Funcionario(String name)
         {
-            new Funcionario("João Snow").Save();
-            new Funcionario("Sonia Stark").Save();
-            new Funcionario("Daniele Targaryen").Save();
+            this.nome = name;
         }
 
-        private Funcionario(String nome)
+        public override bool Equals(object obj)
         {
-            this.nome = nome;
-        }
-
-        private void Save()
-        {
-            funcionarios.Add(this.nome, this);
-        }
-
-        private static IDictionary<string, Funcionario> funcionarios
-            = new Dictionary<string, Funcionario>();
-
-        public static Funcionario Get(string nome)
-        {
-            Funcionario funcionario = (Funcionario)funcionarios[nome];
-            if (funcionario == null)
+            Funcionario outro = obj as Funcionario;
+            if (outro == null)
             {
-                funcionario = new Funcionario(nome);
-                funcionarios.Add(nome, funcionario);
+                return false; //early return
             }
-            return funcionario;
+            return base.Equals(outro);
+        }
+
+        public override int GetHashCode()
+        {
+            return nome.GetHashCode();
         }
     }
 
@@ -64,12 +52,12 @@ namespace refatoracao.R23.ChangeValueToReference.depois
 
         public Projeto(String nomeGerente)
         {
-            this.gerente = Funcionario.Get(nomeGerente);
+            this.gerente = new Funcionario(nomeGerente);
         }
 
         public void SetGerente(string nomeFuncionario)
         {
-            this.gerente = Funcionario.Get(nomeFuncionario);
+            this.gerente = new Funcionario(nomeFuncionario);
         }
     }
 }
