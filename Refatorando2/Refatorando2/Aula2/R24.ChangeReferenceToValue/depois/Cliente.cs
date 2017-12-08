@@ -9,7 +9,7 @@ namespace refatoracao.R24.ChangeReferenceToValue.depois
     {
         public void Main()
         {
-            Cliente joao = Cliente.Get("João Snow");
+            Cliente joao = new Cliente("João Snow");
             joao.DataNascimento = new DateTime(1985, 1, 1);
         }
     }
@@ -23,23 +23,9 @@ namespace refatoracao.R24.ChangeReferenceToValue.depois
         public DateTime DataNascimento
         { get => dataNascimento; set => dataNascimento = value; }
 
-        private Cliente(string nome)
+        public Cliente(string nome)
         {
             this.nome = nome;
-        }
-
-        private static IDictionary<string, Cliente> clientes
-            = new Dictionary<string, Cliente>();
-
-        public static Cliente Get(string nome)
-        {
-            Cliente valor = (Cliente)clientes[nome];
-            if (valor == null)
-            {
-                valor = new Cliente(nome);
-                clientes.Add(nome, valor);
-            }
-            return valor;
         }
     }
 }
