@@ -24,18 +24,7 @@ namespace refatoracao.R26.ChangeBiToUni.depois
 
     class Pedido
     {
-        private Cliente cliente;
-        internal Cliente Cliente { get => cliente; }
 
-        public Pedido(Cliente cliente)
-        {
-            this.cliente = cliente;
-        }
-
-        internal void RemoveCliente()
-        {
-            cliente = null;
-        }
     }
 
     class Cliente
@@ -48,7 +37,7 @@ namespace refatoracao.R26.ChangeBiToUni.depois
 
         internal Pedido AdicionaPedido()
         {
-            Pedido pedido = new Pedido(this);
+            Pedido pedido = new Pedido();
             pedidos.Add(pedido);
             return pedido;
         }
@@ -56,7 +45,6 @@ namespace refatoracao.R26.ChangeBiToUni.depois
         internal void RemovePedido(Pedido pedido)
         {
             pedidos.Remove(pedido);
-            pedido.RemoveCliente();
         }
 
         //Mais código do cliente aqui...
