@@ -1,6 +1,6 @@
 ﻿namespace DuplicateObservedData
 {
-    partial class FormCalculadoraDepois
+    partial class FormCalculadoraAntes
     {
         /// <summary>
         /// Required designer variable.
