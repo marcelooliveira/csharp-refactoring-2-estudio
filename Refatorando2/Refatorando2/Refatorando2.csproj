@@ -19,4 +19,9 @@
     <None Remove="Aula5\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="Aula2\R23.ChangeValueToReference\antes\Projeto.cs" />
+    <Compile Include="Aula2\R23.ChangeValueToReference\depois\Projeto.cs" />
+  </ItemGroup>
+
 </Project>
