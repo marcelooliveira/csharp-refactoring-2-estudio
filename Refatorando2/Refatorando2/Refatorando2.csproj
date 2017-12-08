@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="..\..\SistemaWinForms\CalculadoraIMC.cs" Link="Aula2\R27.DuplicateObservedData\depois\CalculadoraIMC.cs" />
+    <Content Include="..\..\SistemaWinForms\FormCalculadoraAntes.cs" Link="Aula2\R27.DuplicateObservedData\antes\FormCalculadoraAntes.cs" />
+    <Content Include="..\..\SistemaWinForms\FormCalculadoraDepois.cs" Link="Aula2\R27.DuplicateObservedData\depois\FormCalculadoraDepois.cs" />
     <Compile Include="Aula2\R23.ChangeValueToReference\antes\Projeto.cs" />
     <Compile Include="Aula2\R23.ChangeValueToReference\depois\Projeto.cs" />
     <Compile Include="Aula2\R24.ChangeReferenceToValue\antes\Cliente.cs" />
