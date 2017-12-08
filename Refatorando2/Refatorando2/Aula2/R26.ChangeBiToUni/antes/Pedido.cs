@@ -19,9 +19,6 @@ namespace refatoracao.R26.ChangeBiToUni.antes
             {
                 Console.WriteLine($"Pedido: {pedido}");
             }
-
-            //acessando cliente a partir do pedido (não é possível!)
-            Console.WriteLine($"Cliente: {pedido.Cliente}");
         }
     }
 
