@@ -10,9 +10,8 @@ namespace refatoracao.R25.ChangeUniToBi.depois
         void Main()
         {
             var cliente = new Cliente();
-            var pedido = new Pedido();
 
-            cliente.AdicionaPedido(pedido);
+            Pedido pedido = cliente.AdicionaPedido();
             cliente.RemovePedido(pedido);
 
             //acessando pedidos a partir do cliente
@@ -22,13 +21,24 @@ namespace refatoracao.R25.ChangeUniToBi.depois
             }
 
             //acessando cliente a partir do pedido (não é possível!)
-            //Console.WriteLine($"Cliente: {pedido.Cliente}");
+            Console.WriteLine($"Cliente: {pedido.Cliente}");
         }
     }
 
     class Pedido
     {
-        //Código do pedido aqui...
+        private Cliente cliente;
+        internal Cliente Cliente { get => cliente; }
+
+        public Pedido(Cliente cliente)
+        {
+            this.cliente = cliente;
+        }
+
+        internal void RemoveCliente()
+        {
+            cliente = null;
+        }
     }
 
     class Cliente
@@ -39,14 +49,17 @@ namespace refatoracao.R25.ChangeUniToBi.depois
             get { return new ReadOnlyCollection<Pedido>(pedidos); }
         }
 
-        internal void AdicionaPedido(Pedido pedido)
+        internal Pedido AdicionaPedido()
         {
+            Pedido pedido = new Pedido(this);
             pedidos.Add(pedido);
+            return pedido;
         }
 
         internal void RemovePedido(Pedido pedido)
         {
             pedidos.Remove(pedido);
+            pedido.RemoveCliente();
         }
 
         //Mais código do cliente aqui...
