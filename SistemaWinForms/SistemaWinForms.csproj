@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculadoraIMC.cs" />
     <Compile Include="FormCalculadoraAntes.cs">
       <SubType>Form</SubType>
     </Compile>
