@@ -28,9 +28,11 @@
     <Compile Include="Aula2\R25.ChangeUniToBi\depois\Pedido.cs" />
     <Compile Include="Aula2\R26.ChangeBiToUni\antes\Pedido.cs" />
     <Compile Include="Aula2\R26.ChangeBiToUni\depois\Pedido.cs" />
-    <Compile Include="Aula2\R27.DuplicateObservedData\antes\FormCalculadoraAntes.cs" />
-    <Compile Include="Aula2\R27.DuplicateObservedData\depois\CalculadoraIMC.cs" />
-    <Compile Include="Aula2\R27.DuplicateObservedData\depois\FormCalculadoraDepois.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Aula2\R27.DuplicateObservedData\antes\" />
+    <Folder Include="Aula2\R27.DuplicateObservedData\depois\" />
   </ItemGroup>
 
 </Project>
