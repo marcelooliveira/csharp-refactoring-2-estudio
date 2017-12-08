@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace refatoracao.R26.ChangeBiToUni.depois
+namespace refatoracao.R26.ChangeBiToUni.antes
 {
     class Program
     {
@@ -20,7 +20,7 @@ namespace refatoracao.R26.ChangeBiToUni.depois
                 Console.WriteLine($"Pedido: {pedido}");
             }
 
-            //acessando cliente a partir do pedido
+            //acessando cliente a partir do pedido (não é possível!)
             Console.WriteLine($"Cliente: {pedido.Cliente}");
         }
     }
@@ -28,19 +28,17 @@ namespace refatoracao.R26.ChangeBiToUni.depois
     class Pedido
     {
         private Cliente cliente;
-        internal Cliente Cliente => cliente;
+        internal Cliente Cliente { get => cliente; }
 
         public Pedido(Cliente cliente)
         {
             this.cliente = cliente;
         }
 
-        public void RemoveCliente()
+        internal void RemoveCliente()
         {
             cliente = null;
         }
-
-        //Código do pedido aqui...
     }
 
     class Cliente
@@ -53,15 +51,15 @@ namespace refatoracao.R26.ChangeBiToUni.depois
 
         internal Pedido AdicionaPedido()
         {
-            var pedido = new Pedido(this);
+            Pedido pedido = new Pedido(this);
             pedidos.Add(pedido);
             return pedido;
         }
 
         internal void RemovePedido(Pedido pedido)
         {
-            pedido.RemoveCliente();
             pedidos.Remove(pedido);
+            pedido.RemoveCliente();
         }
 
         //Mais código do cliente aqui...

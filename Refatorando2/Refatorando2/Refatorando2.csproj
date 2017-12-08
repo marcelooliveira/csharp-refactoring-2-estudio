@@ -26,6 +26,8 @@
     <Compile Include="Aula2\R24.ChangeReferenceToValue\depois\Cliente.cs" />
     <Compile Include="Aula2\R25.ChangeUniToBi\antes\Pedido.cs" />
     <Compile Include="Aula2\R25.ChangeUniToBi\depois\Pedido.cs" />
+    <Compile Include="Aula2\R26.ChangeBiToUni\antes\Pedido.cs" />
+    <Compile Include="Aula2\R26.ChangeBiToUni\depois\Pedido.cs" />
   </ItemGroup>
 
 </Project>
