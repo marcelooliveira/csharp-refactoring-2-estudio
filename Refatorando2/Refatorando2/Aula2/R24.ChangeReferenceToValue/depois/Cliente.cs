@@ -9,8 +9,8 @@ namespace refatoracao.R24.ChangeReferenceToValue.depois
     {
         public void Main()
         {
-            Cliente joao = new Cliente("João Snow", 
-                new DateTime(1985, 1, 1));
+            Cliente joao = Cliente.Get("João Snow");
+            joao.DataNascimento = new DateTime(1985, 1, 1);
         }
     }
 
@@ -19,28 +19,27 @@ namespace refatoracao.R24.ChangeReferenceToValue.depois
         private readonly string nome;
         public string Nome { get => nome; }
 
-        private readonly DateTime dataNascimento;
-        public DateTime DataNascimento { get => dataNascimento; }
+        private DateTime dataNascimento;
+        public DateTime DataNascimento
+        { get => dataNascimento; set => dataNascimento = value; }
 
-        public Cliente(string nome, DateTime dataNascimento)
+        private Cliente(string nome)
         {
             this.nome = nome;
-            this.dataNascimento = dataNascimento;
         }
 
-        public override bool Equals(object obj)
+        private static IDictionary<string, Cliente> clientes
+            = new Dictionary<string, Cliente>();
+
+        public static Cliente Get(string nome)
         {
-            Cliente outro = obj as Cliente;
-            if (outro == null)
+            Cliente valor = (Cliente)clientes[nome];
+            if (valor == null)
             {
-                return false; //early return
+                valor = new Cliente(nome);
+                clientes.Add(nome, valor);
             }
-            return base.Equals(outro);
-        }
-
-        public override int GetHashCode()
-        {
-            return nome.GetHashCode();
+            return valor;
         }
     }
 }
