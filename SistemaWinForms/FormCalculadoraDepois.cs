@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DuplicateObservedData
 {
-    public partial class FormCalculadoraDepois : Form
+    public partial class FormCalculadoraAntes : Form
     {
-        public FormCalculadoraDepois()
+        public FormCalculadoraAntes()
         {
             InitializeComponent();
         }
