@@ -8,23 +8,26 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
     {
         void Main()
         {
-            Funcionario funcionario1 = new Funcionario(new Engenheiro(), 2000, 0, 0);
-            Funcionario funcionario2 = new Funcionario(new Vendedor(), 2000, 1500, 0);
-            Funcionario funcionario3 = new Funcionario(new Gerente(), 3000, 0, 1000);
+            Funcionario funcionario1 = Funcionario.Criar(Funcionario.ENGENHEIRO, 2000, 0, 0);
+            Funcionario funcionario2 = Funcionario.Criar(Funcionario.VENDEDOR, 2000, 1500, 0);
+            Funcionario funcionario3 = Funcionario.Criar(Funcionario.GERENTE, 3000, 0, 1000);
 
             var valorFolhaDePagamento =
-                funcionario1.GetPagamento()
-                + funcionario2.GetPagamento()
-                + funcionario3.GetPagamento();
+                funcionario1.Salario
+                + funcionario2.Salario
+                + funcionario3.Salario;
         }
     }
 
-    //Veja também: 
-    //SOLID com Java: Orientação a Objetos com Java
-    //https://www.alura.com.br/curso-online-orientacao-a-objetos-avancada-e-principios-solid
-
     class Funcionario
     {
+        public const int ENGENHEIRO = 0;
+        public const int VENDEDOR = 1;
+        public const int GERENTE = 2;
+
+        private readonly int tipo;
+        public int Tipo { get; }
+
         private readonly decimal salario;
         public decimal Salario { get; }
 
@@ -34,10 +37,7 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
         private readonly decimal bonus;
         public decimal Bonus { get; }
 
-        private TipoFuncionario tipo;
-        public TipoFuncionario Tipo => tipo;
-
-        public Funcionario(TipoFuncionario tipo, decimal salario, decimal comissao, decimal bonus)
+        private Funcionario(int tipo, decimal salario, decimal comissao, decimal bonus)
         {
             this.tipo = tipo;
             this.salario = salario;
@@ -45,43 +45,27 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
             this.bonus = bonus;
         }
 
-        public void TrocarTipo(TipoFuncionario tipo)
-        {
-            this.tipo = tipo;
-        }
-
         public decimal GetPagamento()
         {
-            return tipo.GetPagamento(this);
+            switch (Tipo)
+            {
+                case ENGENHEIRO:
+                    return Salario;
+                case VENDEDOR:
+                    return Salario + Comissao;
+                case GERENTE:
+                    return Salario + Bonus;
+                default:
+                    break;
+            }
+            throw new Exception("Tipo desconhecido");
         }
-    }
 
-    class TipoFuncionario
-    {
-        public virtual decimal GetPagamento(Funcionario funcionario)
+        public static Funcionario Criar(int tipo, decimal salario, decimal comissao, decimal bonus)
         {
-            return funcionario.Salario;
+            return new Funcionario(tipo, salario, comissao, bonus);
         }
     }
 
-    class Engenheiro : TipoFuncionario
-    {
-    }
-
-    class Vendedor : TipoFuncionario
-    {
-        public override decimal GetPagamento(Funcionario funcionario)
-        {
-            return funcionario.Salario + funcionario.Comissao;
-        }
-    }
-
-    class Gerente : TipoFuncionario
-    {
-        public override decimal GetPagamento(Funcionario funcionario)
-        {
-            return funcionario.Salario + funcionario.Bonus;
-        }
-    }
 
 }
