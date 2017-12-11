@@ -35,6 +35,8 @@
     <Compile Include="Aula3\R28.ReplaceTypeCodeWithClass\depois\ContaBancaria.cs" />
     <Compile Include="Aula3\R29.ReplaceTypeCodeWithSubclasses\antes\Funcionario.cs" />
     <Compile Include="Aula3\R29.ReplaceTypeCodeWithSubclasses\depois\Funcionario.cs" />
+    <Compile Include="Aula3\R30.ReplaceTypeCodeWStateStrategy\antes\Funcionario.cs" />
+    <Compile Include="Aula3\R30.ReplaceTypeCodeWStateStrategy\depois\Funcionario.cs" />
   </ItemGroup>
 
   <ItemGroup>

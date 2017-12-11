@@ -8,14 +8,14 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.antes
     {
         void Main()
         {
-            Funcionario engenheiro = Funcionario.Criar(Funcionario.ENGENHEIRO, 2000, 0, 0);
-            Funcionario vendedor = Funcionario.Criar(Funcionario.VENDEDOR, 2000, 1500, 0);
-            Funcionario gerente = Funcionario.Criar(Funcionario.GERENTE, 3000, 0, 1000);
+            Funcionario funcionario1 = Funcionario.Criar(Funcionario.ENGENHEIRO, 2000, 0, 0);
+            Funcionario funcionario2 = Funcionario.Criar(Funcionario.VENDEDOR, 2000, 1500, 0);
+            Funcionario funcionario3 = Funcionario.Criar(Funcionario.GERENTE, 3000, 0, 1000);
 
             var valorFolhaDePagamento =
-                engenheiro.Salario
-                + vendedor.Salario
-                + gerente.Salario;
+                funcionario1.Salario
+                + funcionario2.Salario
+                + funcionario3.Salario;
         }
     }
 

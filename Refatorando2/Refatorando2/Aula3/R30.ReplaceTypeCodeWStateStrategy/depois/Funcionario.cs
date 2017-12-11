@@ -8,14 +8,14 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
     {
         void Main()
         {
-            Funcionario engenheiro = new Funcionario(new Engenheiro(), 2000, 0, 0);
-            Funcionario vendedor = new Funcionario(new Vendedor(), 2000, 1500, 0);
-            Funcionario gerente = new Funcionario(new Gerente(), 3000, 0, 1000);
+            Funcionario funcionario1 = new Funcionario(new Engenheiro(), 2000, 0, 0);
+            Funcionario funcionario2 = new Funcionario(new Vendedor(), 2000, 1500, 0);
+            Funcionario funcionario3 = new Funcionario(new Gerente(), 3000, 0, 1000);
 
             var valorFolhaDePagamento =
-                engenheiro.GetPagamento()
-                + vendedor.GetPagamento()
-                + gerente.GetPagamento();
+                funcionario1.GetPagamento()
+                + funcionario2.GetPagamento()
+                + funcionario3.GetPagamento();
         }
     }
 
@@ -34,7 +34,7 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
         private readonly decimal bonus;
         public decimal Bonus { get; }
 
-        private readonly TipoFuncionario tipo;
+        private TipoFuncionario tipo;
         public TipoFuncionario Tipo => tipo;
 
         public Funcionario(TipoFuncionario tipo, decimal salario, decimal comissao, decimal bonus)
@@ -43,6 +43,11 @@ namespace refatoracao.R30.ReplaceTypeCodeWStateStrategy.depois
             this.salario = salario;
             this.comissao = comissao;
             this.bonus = bonus;
+        }
+
+        public void TrocarTipo(TipoFuncionario tipo)
+        {
+            this.tipo = tipo;
         }
 
         public decimal GetPagamento()
