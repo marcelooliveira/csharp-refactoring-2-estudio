@@ -15,8 +15,6 @@ namespace refatoracao.R34.ConsolidateDuplicateConditionalFragments.depois
 
     class Produto
     {
-        private const decimal FATOR_DESCONTO_PROMOCIONAL = 0.95m;
-        private const decimal FATOR_DESCONTO_NORMAL = 0.98m;
         readonly decimal preco;
         public decimal Preco => preco;
 
@@ -31,17 +29,18 @@ namespace refatoracao.R34.ConsolidateDuplicateConditionalFragments.depois
             this.preco = preco;
             this.ehVendaPromocional = ehVendaPromocional;
 
-            this.precoFinal = CalculaPrecoFinal();
-            Catalogo.IncluirProduto(this);
-            GerenciadorDeEmail.EnviarEmailDeNovoProduto(this);
-        }
-
-        private decimal CalculaPrecoFinal()
-        {
             if (ehVendaPromocional)
-                return preco * FATOR_DESCONTO_PROMOCIONAL; //early return
-
-            return preco * FATOR_DESCONTO_NORMAL;
+            {
+                this.precoFinal = preco * 0.95m;
+                Catalogo.IncluirProduto(this);
+                GerenciadorDeEmail.EnviarEmailDeNovoProduto(this);
+            }
+            else
+            {
+                this.precoFinal = preco * 0.98m;
+                Catalogo.IncluirProduto(this);
+                GerenciadorDeEmail.EnviarEmailDeNovoProduto(this);
+            }
         }
     }
 
@@ -61,5 +60,4 @@ namespace refatoracao.R34.ConsolidateDuplicateConditionalFragments.depois
             //Aqui vai o código para criar novo produto...
         }
     }
-
 }
