@@ -13,28 +13,24 @@ namespace refatoracao.R31.ReplaceSubclassWithFields.depois
         }
     }
 
-    public class Microondas
+    abstract class Microondas
     {
-        private readonly int voltagem;
+        public abstract int GetVoltagem();
+    }
 
-        private Microondas(int voltagem)
+    class Microondas110 : Microondas
+    {
+        public override int GetVoltagem()
         {
-            this.voltagem = voltagem;
+            return 110;
         }
+    }
 
-        public int GetVoltagem()
+    class Microondas220 : Microondas
+    {
+        public override int GetVoltagem()
         {
-            return voltagem;
-        }
-
-        public static Microondas CriarVersao110Volts()
-        {
-            return new Microondas(110);
-        }
-
-        public static Microondas CriarVersao220Volts()
-        {
-            return new Microondas(220);
+            return 220;
         }
     }
 
@@ -42,8 +38,8 @@ namespace refatoracao.R31.ReplaceSubclassWithFields.depois
     {
         public void Fabricar()
         {
-            var aparelho1 = Microondas.CriarVersao110Volts();
-            var aparelho2 = Microondas.CriarVersao220Volts();
+            var aparelho1 = new Microondas220();
+            var aparelho2 = new Microondas110();
 
             Fabricar(aparelho1);
             Fabricar(aparelho2);
