@@ -37,6 +37,8 @@
     <Compile Include="Aula3\R29.ReplaceTypeCodeWithSubclasses\depois\Funcionario.cs" />
     <Compile Include="Aula3\R30.ReplaceTypeCodeWStateStrategy\antes\Funcionario.cs" />
     <Compile Include="Aula3\R30.ReplaceTypeCodeWStateStrategy\depois\Funcionario.cs" />
+    <Compile Include="Aula3\R31.ReplaceSubclassWithFields\antes\Microondas.cs" />
+    <Compile Include="Aula3\R31.ReplaceSubclassWithFields\depois\Microondas.cs" />
   </ItemGroup>
 
   <ItemGroup>
