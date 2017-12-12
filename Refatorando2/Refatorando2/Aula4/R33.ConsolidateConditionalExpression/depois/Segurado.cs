@@ -42,10 +42,9 @@ namespace refatoracao.R33.ConsolidateConditionalExpression.depois
 
         public decimal ValorSeguroAReceber()
         {
-            if (NaoEhElegivelParaSeguro())
-            {
-                return 0; // early return
-            }
+            if (cumprindoCarencia) return 0; // early return
+            if (mensalidadesAtrasadas > 1) return 0; // early return
+            if (mesesSemSinistro < 12) return 0; // early return
 
             decimal resultado = 0;
 
@@ -53,13 +52,6 @@ namespace refatoracao.R33.ConsolidateConditionalExpression.depois
             //Aqui é calculado o valor do seguro...
             //
             return resultado;
-        }
-
-        private bool NaoEhElegivelParaSeguro()
-        {
-            return cumprindoCarencia 
-                || mensalidadesAtrasadas > 1 
-                || mesesSemSinistro < 12;
         }
     }
 }
