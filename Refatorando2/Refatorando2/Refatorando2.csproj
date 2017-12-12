@@ -39,6 +39,8 @@
     <Compile Include="Aula3\R30.ReplaceTypeCodeWStateStrategy\depois\Funcionario.cs" />
     <Compile Include="Aula3\R31.ReplaceSubclassWithFields\antes\Microondas.cs" />
     <Compile Include="Aula3\R31.ReplaceSubclassWithFields\depois\Microondas.cs" />
+    <Compile Include="Aula4\R32.DecomposeConditional\antes\HotelFazenda.cs" />
+    <Compile Include="Aula4\R32.DecomposeConditional\depois\HotelFazenda.cs" />
   </ItemGroup>
 
   <ItemGroup>

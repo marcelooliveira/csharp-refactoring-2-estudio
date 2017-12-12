@@ -30,27 +30,13 @@ namespace refatoracao.R32.DecomposeConditional.depois
         private DateTime INICIO_VERAO = new DateTime(2017, 12, 23);
         private DateTime FIM_VERAO = new DateTime(2018, 03, 21);
 
+
         public decimal GetValorTotal(DateTime data, int dias)
         {
-            if (NaoEhVerao(data))
-                return TaxaInverno(dias);
+            if (data.EhAntesDe(INICIO_VERAO) || data.EhDepoisDe(FIM_VERAO))
+                return dias * _taxaInverno + _taxaServicoInverno;
 
-            return TaxaVerao(dias); //early return
-        }
-
-        private decimal TaxaVerao(int dias)
-        {
-            return dias * _taxaVerao;
-        }
-
-        private decimal TaxaInverno(int dias)
-        {
-            return dias * _taxaInverno + _taxaServicoInverno;
-        }
-
-        private bool NaoEhVerao(DateTime data)
-        {
-            return data.EhAntesDe(INICIO_VERAO) || data.EhDepoisDe(FIM_VERAO);
+            return dias * _taxaVerao; //early return
         }
     }
 
