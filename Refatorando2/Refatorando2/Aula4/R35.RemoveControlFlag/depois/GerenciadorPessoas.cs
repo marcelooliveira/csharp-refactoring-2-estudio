@@ -33,14 +33,14 @@ namespace refatoracao.R35.RemoveControlFlag.depois
         public bool EncontrarPessoaEspecial(IList<string> pessoas)
         {
             bool encontrouPessoa = false;
-            foreach (var person in pessoas)
+            foreach (var pessoa in pessoas)
             {
-                if (person.Equals("Diego"))
+                if (pessoa.Equals("Diego"))
                 {
                     EnviarAlerta();
                     encontrouPessoa = true;
                 }
-                if (person.Equals("João"))
+                if (pessoa.Equals("João"))
                 {
                     EnviarAlerta();
                     encontrouPessoa = true;
