@@ -10,26 +10,17 @@ namespace refatoracao.R35.RemoveControlFlag.depois
         {
             var gerenciador =
                 new GerenciadorPessoas()
-                .EncontrarPessoaEspecial(new List<string> { "Diego", "Caio" });
+                .EncontrarPessoaEspecial(new List<string> {
+                    "Marcelo",
+                    "Marcos",
+                    "Diego",
+                    "Caio",
+                    "Marlon" });
         }
     }
 
     class GerenciadorPessoas
     {
-        public GerenciadorPessoas()
-        {
-            IList<string> pessoas = new List<string>
-            {
-                "Marcelo",
-                "Marcos",
-                "Diego",
-                "Caio",
-                "Marlon"
-            };
-
-            var encontrouPessoa = EncontrarPessoaEspecial(pessoas);
-        }
-
         public bool EncontrarPessoaEspecial(IList<string> pessoas)
         {
             bool encontrouPessoa = false;
