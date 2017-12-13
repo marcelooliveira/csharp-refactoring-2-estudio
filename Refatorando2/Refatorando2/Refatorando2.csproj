@@ -43,6 +43,8 @@
     <Compile Include="Aula4\R32.DecomposeConditional\depois\HotelFazenda.cs" />
     <Compile Include="Aula4\R33.ConsolidateConditionalExpression\antes\Segurado.cs" />
     <Compile Include="Aula4\R33.ConsolidateConditionalExpression\depois\Segurado.cs" />
+    <Compile Include="Aula4\R34.ConsolidateDuplicateConditionalFragments\antes\Produto.cs" />
+    <Compile Include="Aula4\R34.ConsolidateDuplicateConditionalFragments\depois\Produto.cs" />
   </ItemGroup>
 
   <ItemGroup>
