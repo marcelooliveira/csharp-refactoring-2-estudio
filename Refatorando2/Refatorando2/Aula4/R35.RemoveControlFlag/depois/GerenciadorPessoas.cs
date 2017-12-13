@@ -27,31 +27,26 @@ namespace refatoracao.R35.RemoveControlFlag.depois
                 "Marlon"
             };
 
-
             var encontrouPessoa = EncontrarPessoaEspecial(pessoas);
         }
 
         public bool EncontrarPessoaEspecial(IList<string> pessoas)
         {
-            IList<string> pessoasEspeciais = GetPessoasEspeciais();
+            bool encontrouPessoa = false;
             foreach (var person in pessoas)
             {
-                if (pessoasEspeciais.Contains(person))
+                if (person.Equals("Diego"))
                 {
                     EnviarAlerta();
-                    return true; //early return
+                    encontrouPessoa = true;
+                }
+                if (person.Equals("João"))
+                {
+                    EnviarAlerta();
+                    encontrouPessoa = true;
                 }
             }
-            return false;
-        }
-
-        private static IList<string> GetPessoasEspeciais()
-        {
-            return new List<string>
-            {
-                "Diego",
-                "João"
-            };
+            return encontrouPessoa;
         }
 
         private static void EnviarAlerta()

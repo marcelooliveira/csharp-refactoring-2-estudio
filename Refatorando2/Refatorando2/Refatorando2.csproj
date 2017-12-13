@@ -45,6 +45,8 @@
     <Compile Include="Aula4\R33.ConsolidateConditionalExpression\depois\Segurado.cs" />
     <Compile Include="Aula4\R34.ConsolidateDuplicateConditionalFragments\antes\Produto.cs" />
     <Compile Include="Aula4\R34.ConsolidateDuplicateConditionalFragments\depois\Produto.cs" />
+    <Compile Include="Aula4\R35.RemoveControlFlag\antes\GerenciadorPessoas.cs" />
+    <Compile Include="Aula4\R35.RemoveControlFlag\depois\GerenciadorPessoas.cs" />
   </ItemGroup>
 
   <ItemGroup>
