@@ -49,6 +49,8 @@
     <Compile Include="Aula4\R35.RemoveControlFlag\depois\GerenciadorPessoas.cs" />
     <Compile Include="Aula5\R36.ReplaceNestedConditional\antes\Auxilio.cs" />
     <Compile Include="Aula5\R36.ReplaceNestedConditional\depois\Auxilio.cs" />
+    <Compile Include="Aula5\R37.ReplaceConditionalWithPolymorphism\antes\Robo.cs" />
+    <Compile Include="Aula5\R37.ReplaceConditionalWithPolymorphism\depois\Robo.cs" />
   </ItemGroup>
 
   <ItemGroup>
