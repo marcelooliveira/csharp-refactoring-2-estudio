@@ -47,6 +47,8 @@
     <Compile Include="Aula4\R34.ConsolidateDuplicateConditionalFragments\depois\Produto.cs" />
     <Compile Include="Aula4\R35.RemoveControlFlag\antes\GerenciadorPessoas.cs" />
     <Compile Include="Aula4\R35.RemoveControlFlag\depois\GerenciadorPessoas.cs" />
+    <Compile Include="Aula5\R36.ReplaceNestedConditional\antes\Auxilio.cs" />
+    <Compile Include="Aula5\R36.ReplaceNestedConditional\depois\Auxilio.cs" />
   </ItemGroup>
 
   <ItemGroup>

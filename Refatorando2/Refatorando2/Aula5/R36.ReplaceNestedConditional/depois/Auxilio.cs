@@ -48,19 +48,32 @@ namespace refatoracao.R36.ReplaceNestedConditional.depois
 
         public double GetPagamento()
         {
+            double result;
+
             if (ehFalecido)
             {
-                return ValorFalecido; //early return
+                result = ValorFalecido;
             }
-            if (ehSeparado)
+            else
             {
-                return ValorSeparado; //early return
+                if (ehSeparado)
+                {
+                    result = ValorSeparado;
+                }
+                else
+                {
+                    if (ehAposentado)
+                    {
+                        result = ValorAposentado;
+                    }
+                    else
+                    {
+                        result = ValorNormal;
+                    }
+                }
             }
-            if (ehAposentado)
-            {
-                return ValorAposentado; //early return
-            }
-            return ValorNormal;
+
+            return result;
         }
     }
 }
