@@ -32,6 +32,43 @@ namespace refatoracao.R38.IntroduceNullObject.depois
         public abstract void EstornarPagamento(decimal valor, int parcelas);
     }
 
+    class Dinheiro : Cartao
+    {
+        public override void EfetuarPagamento(decimal valor, int parcelas)
+        {
+            AbrirCaixaRegistradora();
+            EfetuarPagamentoEmDinheiro(valor);
+            FecharCaixaRegistradora();
+        }
+
+        public override void EstornarPagamento(decimal valor, int parcelas)
+        {
+            AbrirCaixaRegistradora();
+            EstornarPagamentoEmDinheiro(valor);
+            FecharCaixaRegistradora();
+        }
+
+        private void AbrirCaixaRegistradora()
+        {
+            Console.WriteLine("Abrindo Caixa Registradora...");
+        }
+
+        private void FecharCaixaRegistradora()
+        {
+            Console.WriteLine("Fechando Caixa Registradora...");
+        }
+
+        private void EfetuarPagamentoEmDinheiro(decimal valor)
+        {
+            Console.WriteLine("Fazendo pagamento em dinheiro...");
+        }
+
+        private void EstornarPagamentoEmDinheiro(decimal valor)
+        {
+            Console.WriteLine("Estornando Pagamento Em Dinheiro...");
+        }
+    }
+
     class CartaoCredito : Cartao
     {
         public override void EfetuarPagamento(decimal valor, int parcelas)
@@ -85,57 +122,26 @@ namespace refatoracao.R38.IntroduceNullObject.depois
 
         public Pagamento(Cartao cartao, decimal valor, int parcelas)
         {
-            this.cartao = cartao;
+            if (cartao == null)
+            {
+                this.cartao = new Dinheiro();
+            }
+            else
+            {
+                this.cartao = cartao;
+            }
             this.valor = valor;
             this.parcelas = parcelas;
         }
 
         public void Pagar()
         {
-            if (cartao != null) // temos que verificar nulo várias vezes
-            {
-                cartao.EfetuarPagamento(valor, parcelas);
-            }
-            else
-            {
-                AbrirCaixaRegistradora();
-                EfetuarPagamentoEmDinheiro(valor);
-                FecharCaixaRegistradora();
-            }
+            cartao.EfetuarPagamento(valor, parcelas);
         }
 
         public void Estornar()
         {
-            if (cartao != null) // temos que verificar nulo várias vezes
-            {
-                cartao.EstornarPagamento(valor, parcelas);
-            }
-            else
-            {
-                AbrirCaixaRegistradora();
-                EstornarPagamentoEmDinheiro(valor);
-                FecharCaixaRegistradora();
-            }
-        }
-
-        private void AbrirCaixaRegistradora()
-        {
-            Console.WriteLine("Abrindo Caixa Registradora...");
-        }
-
-        private void FecharCaixaRegistradora()
-        {
-            Console.WriteLine("Fechando Caixa Registradora...");
-        }
-
-        private void EfetuarPagamentoEmDinheiro(decimal valor)
-        {
-            Console.WriteLine("Fazendo pagamento em dinheiro...");
-        }
-
-        private void EstornarPagamentoEmDinheiro(decimal valor)
-        {
-            Console.WriteLine("Estornando Pagamento Em Dinheiro...");
+            cartao.EstornarPagamento(valor, parcelas);
         }
     }
 }
