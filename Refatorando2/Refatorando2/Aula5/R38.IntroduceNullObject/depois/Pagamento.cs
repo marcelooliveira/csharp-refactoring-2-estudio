@@ -85,22 +85,45 @@ namespace refatoracao.R38.IntroduceNullObject.depois
         }
     }
 
-    class NullCartao : Cartao
+    class Pagamento
     {
-        public override bool IsNull => true;
+        private readonly Cartao cartao;
+        private readonly decimal valor;
+        private readonly int parcelas;
 
-        public override void EfetuarPagamento(decimal valor, int parcelas)
+        public Pagamento(Cartao cartao, decimal valor, int parcelas)
         {
-            AbrirCaixaRegistradora();
-            EfetuarPagamentoEmDinheiro(valor);
-            FecharCaixaRegistradora();
+            this.cartao = cartao;
+            this.valor = valor;
+            this.parcelas = parcelas;
         }
 
-        public override void EstornarPagamento(decimal valor, int parcelas)
+        public void Pagar()
         {
-            AbrirCaixaRegistradora();
-            EstornarPagamentoEmDinheiro(valor);
-            FecharCaixaRegistradora();
+            if (cartao != null) // temos que verificar nulo várias vezes
+            {
+                cartao.EfetuarPagamento(valor, parcelas);
+            }
+            else
+            {
+                AbrirCaixaRegistradora();
+                EfetuarPagamentoEmDinheiro(valor);
+                FecharCaixaRegistradora();
+            }
+        }
+
+        public void Estornar()
+        {
+            if (cartao != null) // temos que verificar nulo várias vezes
+            {
+                cartao.EstornarPagamento(valor, parcelas);
+            }
+            else
+            {
+                AbrirCaixaRegistradora();
+                EstornarPagamentoEmDinheiro(valor);
+                FecharCaixaRegistradora();
+            }
         }
 
         private void AbrirCaixaRegistradora()
@@ -121,34 +144,6 @@ namespace refatoracao.R38.IntroduceNullObject.depois
         private void EstornarPagamentoEmDinheiro(decimal valor)
         {
             Console.WriteLine("Estornando Pagamento Em Dinheiro...");
-        }
-    }
-
-    class Pagamento
-    {
-        private readonly Cartao cartao;
-        private readonly decimal valor;
-        private readonly int parcelas;
-
-        public Pagamento(Cartao cartao, decimal valor, int parcelas)
-        {
-            this.cartao = cartao;
-
-            if (cartao == null) // agora só verificamos uma vez
-                cartao = new NullCartao();
-
-            this.valor = valor;
-            this.parcelas = parcelas;
-        }
-
-        public void Pagar()
-        {
-            cartao.EfetuarPagamento(valor, parcelas);
-        }
-
-        public void Estornar()
-        {
-            cartao.EstornarPagamento(valor, parcelas);
         }
     }
 }

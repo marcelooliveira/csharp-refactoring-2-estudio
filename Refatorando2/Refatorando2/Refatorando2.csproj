@@ -51,6 +51,8 @@
     <Compile Include="Aula5\R36.ReplaceNestedConditional\depois\Auxilio.cs" />
     <Compile Include="Aula5\R37.ReplaceConditionalWithPolymorphism\antes\Robo.cs" />
     <Compile Include="Aula5\R37.ReplaceConditionalWithPolymorphism\depois\Robo.cs" />
+    <Compile Include="Aula5\R38.IntroduceNullObject\antes\Pagamento.cs" />
+    <Compile Include="Aula5\R38.IntroduceNullObject\depois\Pagamento.cs" />
   </ItemGroup>
 
   <ItemGroup>
