@@ -28,15 +28,12 @@ namespace refatoracao.R38.IntroduceNullObject.antes
 
     abstract class Cartao
     {
-        public abstract bool IsNull { get; }
-
         public abstract void EfetuarPagamento(decimal valor, int parcelas);
         public abstract void EstornarPagamento(decimal valor, int parcelas);
     }
 
     class CartaoCredito : Cartao
     {
-        public override bool IsNull => false;
 
         public override void EfetuarPagamento(decimal valor, int parcelas)
         {
@@ -53,8 +50,6 @@ namespace refatoracao.R38.IntroduceNullObject.antes
 
     class CartaoDebito : Cartao
     {
-        public override bool IsNull => false;
-
         public override void EfetuarPagamento(decimal valor, int parcelas)
         {
             Console.WriteLine(
@@ -70,8 +65,6 @@ namespace refatoracao.R38.IntroduceNullObject.antes
 
     class ValePresente : Cartao
     {
-        public override bool IsNull => false;
-
         public override void EfetuarPagamento(decimal valor, int parcelas)
         {
             Console.WriteLine(
